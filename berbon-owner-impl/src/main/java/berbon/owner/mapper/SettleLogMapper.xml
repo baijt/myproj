@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="berbon.owner.mapper.SettleLogMapper">
+	<resultMap id="BaseResultMap" type="SettleLog">
+		<id column="orderId" jdbcType="VARCHAR" property="orderId" />
+		<result column="returnOrderId" jdbcType="VARCHAR" property="returnOrderId" />
+	  	<result column="settleOrderId" jdbcType="VARCHAR" property="settleOrderId" />
+		<result column="insCode" jdbcType="VARCHAR" property="insCode" />
+		<result column="merCode" jdbcType="VARCHAR" property="merCode" />
+		<result column="merName" jdbcType="VARCHAR" property="merName" />
+		<result column="rateFee" jdbcType="BIGINT" property="rateFee" />
+		<result column="currency" jdbcType="INTEGER" property="currency" />
+		<result column="settleAmount" jdbcType="BIGINT" property="settleAmount" />
+		<result column="settleNum" jdbcType="BIGINT" property="settleNum" />
+		<result column="settlePan" jdbcType="VARCHAR" property="settlePan" />
+		<result column="settleAcc" jdbcType="VARCHAR" property="settleAcc" />
+		<result column="bank" jdbcType="VARCHAR" property="bank" />
+		<result column="ordTime" jdbcType="VARCHAR" property="ordTime" />
+		<result column="revTime" jdbcType="VARCHAR" property="revTime" />
+		<result column="orderStat" jdbcType="VARCHAR" property="orderStat" />
+		<result column="orderDesc" jdbcType="VARCHAR" property="orderDesc" />
+		<result column="auditPerson" jdbcType="VARCHAR" property="auditPerson" />
+		<result column="auditTime" jdbcType="VARCHAR" property="auditTime" />
+		<result column="dismantle" jdbcType="INTEGER" property="dismantle" />
+		<result column="rehandled" jdbcType="INTEGER" property="rehandled" />
+		<result column="settleWay" jdbcType="INTEGER" property="settleWay" />
+		<result column="ownership" jdbcType="INTEGER" property="ownership" />
+		<result column="settleType" jdbcType="INTEGER" property="settleType" />
+
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		orderId,insCode,merCode,
+		date_format(ordTime,'%Y-%m-%d %H:%i:%s')
+	</sql>
+
+
+	<select id="getSettleLogs" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from
+		P_SettleLog
+		where
+		ordTime &gt;=#{startTime} and ordTime &lt; #{endTime}
+	</select>
+	<insert id="insertSelective" parameterType="SettleLog" >
+	insert P_SettleLog 
+	<trim prefix="(" suffix=")" suffixOverrides=",">
+	<if test="orderId!=null">orderId,</if>
+	<if test="settleOrderId!=null">settleOrderId,</if>
+	<if test="insCode!=null">insCode,</if>
+	<if test="merCode!=null">merCode,</if>
+	<if test="ordTime!=null">ordTime,</if>
+	<if test="settleAmount!=null">settleAmount,</if>
+	</trim>
+	<trim prefix="values(" suffix=")" prefixOverrides=",">
+	<if test="orderId!=null">#{orderId,jdbcType=VARCHAR},</if>
+	<if test="settleOrderId!=null">#{settleOrderId,jdbcType=VARCHAR},</if>
+	<if test="insCode!=null">#{insCode,jdbcType=VARCHAR},</if>
+	<if test="merCode!=null">#{merCode,jdbcType=VARCHAR},</if>
+	<if test="ordTime!=null">NOW(),</if>
+	<if test="settleAmount!=null">#{settleAmount,jdbcType=BIGINT}</if>
+	</trim>
+	</insert>
+	
+
+</mapper>
