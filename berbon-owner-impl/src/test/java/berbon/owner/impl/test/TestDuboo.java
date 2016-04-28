@@ -18,7 +18,7 @@ public class TestDuboo {
 	@Test
 	public void test(){
 		
-		
+		// add dd
 		System.out.println(userFacade.getUserInfo());
 	}
 	
