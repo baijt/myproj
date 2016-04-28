@@ -17,6 +17,7 @@ public class TestDuboo {
 	
 	@Test
 	public void test(){
+		
 		System.out.println(userFacade.getUserInfo());
 	}
 	
