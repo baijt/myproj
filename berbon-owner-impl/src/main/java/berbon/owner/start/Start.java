@@ -15,6 +15,7 @@ public class Start {
 		logger.setLevel(Level.INFO);
 		logger.info("........................");
 		System.setProperty("dubbo.application.logger","slf4j");  
+//		com.alibaba.dubbo.container.Main.main(args);
 		@SuppressWarnings("resource")
 		ClassPathXmlApplicationContext  context = new ClassPathXmlApplicationContext("classpath*:META-INF/spring/*.xml");
 		context.start();
