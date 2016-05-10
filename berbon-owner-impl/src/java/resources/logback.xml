@@ -8,6 +8,7 @@
 		</encoder>
 	</appender>
 
+
 	<appender name="rollingFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>logs/springboot.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
@@ -31,7 +32,7 @@
 			<onMatch>ACCEPT</onMatch>
 			<onMismatch>DENY</onMismatch>
 		</filter>
-		<file>logs/springboot_error.log</file>
+		<file>logs/berbon-owner-impl_error.log</file>
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<fileNamePattern>logs/berbon-owner-impl_error.%d{yyyy-MM-dd}.%i.log.zip
 			</fileNamePattern>

@@ -24,10 +24,15 @@ public class UserFacadeImpl implements UserFacade{
 	
 	@Autowired
 	private UserDaoImpl userDaoImpl;
+	@Autowired
+	private MqProducer mqProducer;
 	
 	
 	Logger logger = LoggerFactory.getLogger(UserFacadeImpl.class);
 	public String getUserInfo() {
+		
+		
+		mqProducer.sendDataToQueue("test_queue", "hello,rabbmitmq!");
 		stringRedisTemplate.opsForValue().set("abc", "你好");
 		logger.info("----------------"+stringRedisTemplate.opsForValue().get("abc"));
 		// TODO Auto-generated method stub
