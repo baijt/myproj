@@ -32,7 +32,7 @@ public class UserFacadeImpl implements UserFacade{
 	public String getUserInfo() {
 		
 		
-		mqProducer.sendDataToQueue("test_queue", "hello,rabbmitmq!");
+		mqProducer.sendDataToQueue("test_queue_key", "hello,rabbmitmq!");
 		stringRedisTemplate.opsForValue().set("abc", "你好");
 		logger.info("----------------"+stringRedisTemplate.opsForValue().get("abc"));
 		// TODO Auto-generated method stub
